@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Future Animals - Crazy Love</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="../favicon.png" type="image/png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		
+		video {
+		    margin-left: auto;
+		    margin-right: auto;
+		    display: block
+		}
+
+		.vidborder {
+			border: 2.5px solid #007BFF;
+		}
+
+	</style>
+</head>
+<body>
+	<div class='wrapper text-center'>
+		<div class="btn-group">
+			<input type="button" class="btn btn-primary" id="BackBtn" onclick="window.location='/'" value="Back"><br>
+			<input type="button" class="btn btn-primary" id="PlayBtn" onclick="PlayVideo()" value="Play"><br>
+			<input type="button" class="btn btn-primary" id="PauseBtn" onclick="PauseVideo()" value="Pause"><br>
+			<input type="button" class="btn btn-primary" id="RestartBtn" onclick="RestartVideo()" value="Restart"><br><br>
+		</div>
+	</div>
+
+	<div class="wrapper text-center">
+		<br><button type="button" onclick="AudioOnly()" class="btn btn-primary" id="AudioBtn">Audio Only <span class="badge badge-light">Off</span></button>
+	</div>
+
+	<div class="wrapper text-center">
+		<br><p id="curvolume" class="font-weight-bold">Volume: 50</p>
+		<div class="container" style="width: 500px;">
+			<input id="vol-control" type="range" class="custom-range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input><br><br>
+		</div>
+	</div>
+
+	<video height="720" id="noContextMenu" class="vidborder">
+		<source src="Future Animals - Crazy Love.mp4" type="video/mp4">
+	</video>
+
+
+	<script type="text/javascript">
+		var vid = document.getElementById('noContextMenu');
+		var AudioBttn = document.getElementById('AudioBtn');
+		var AudioToggle = false;
+		var audioLvl = Number();
+
+		function PlayVideo() {
+			var Node = document.getElementById("musico");
+			if(AudioToggle == false) {
+				vid.play();
+			} else {
+				Node.play();
+			}
+		};
+
+		function PauseVideo() {
+			var Node = document.getElementById("musico");
+			if(AudioToggle == false) {
+				vid.pause();
+			} else {
+				Node.pause();
+			}
+		};
+
+		function RestartVideo() {
+			var Node = document.getElementById("musico");
+			if(AudioToggle == false) {
+				vid.currentTime = 0;
+			} else {
+				Node.currentTime = 0;
+			}
+		};
+
+		function AudioOnly() {
+			if(AudioToggle == false) {
+				AudioToggle = true;
+				AudioBttn.innerHTML = "Audio Only <span class=\"badge badge-light\">On</span>";
+				vid.hidden = true;
+				vid.pause();
+				var AudioTag = document.createElement("audio");
+				document.body.appendChild(AudioTag);
+				var Music = document.createElement("source");
+				AudioTag.src = "Future Animals - Crazy Love.mp3";
+				AudioTag.id = "musico";
+				AudioTag.autoplay = true;
+				AudioTag.appendChild(Music);
+				AudioTag.load();
+				AudioTag.volume = audioLvl;
+			} else {
+				var Node = document.getElementById("musico");
+				AudioToggle = false;
+				AudioBttn.innerHTML = "Audio Only <span class=\"badge badge-light\">Off</span>";
+				vid.hidden = false;
+				vid.play();
+				vid.volume = audioLvl;
+				Node.remove();
+			}
+		};
+
+		noContext = document.getElementById('noContextMenu');
+
+		noContext.addEventListener('contextmenu', e => {
+		  e.preventDefault();
+		});
+
+	    function SetVolume(val) {
+	    	audioLvl = val / 100;
+
+	    	if(AudioToggle == true) {
+	    		var player = document.getElementById("musico");
+		        var voldisplay = document.getElementById('curvolume');
+		        console.log('Before: ' + player.volume);
+		        player.volume = val / 100;
+		        voldisplay.innerText = "Volume: "+val;
+		        console.log('After: ' + player.volume);
+	    	} else {
+		        var player = document.getElementById('noContextMenu');
+		        var voldisplay = document.getElementById('curvolume');
+		        console.log('Before: ' + player.volume);
+		        player.volume = val / 100;
+		        voldisplay.innerText = "Volume: "+val;
+		        console.log('After: ' + player.volume);
+	        }
+	    };
+	</script>
+</body>
+</html>
