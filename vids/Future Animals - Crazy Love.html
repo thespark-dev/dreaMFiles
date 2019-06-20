@@ -36,14 +36,14 @@
 	</div>
 
 	<div class="wrapper text-center">
+		<br><button type="button" onclick="Loop()" class="btn btn-primary" id="LoopBtn">Loop <span class="badge badge-light">Off</span></button>
+	</div>
+	
+	<div class="wrapper text-center">
 		<br><p id="curvolume" class="font-weight-bold">Volume: 50</p>
 		<div class="container" style="width: 500px;">
 			<input id="vol-control" type="range" class="custom-range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input><br><br>
 		</div>
-	</div>
-
-	<div class="wrapper text-center">
-		<br><button type="button" onclick="Loop()" class="btn btn-primary" id="LoopBtn">Loop <span class="badge badge-light">Off</span></button>
 	</div>
 	
 	<audio id="musico">
