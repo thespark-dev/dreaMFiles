@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Johnson - Det Passer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="../favicon.png" type="image/png">
@@ -36,18 +36,23 @@
 	</div>
 
 	<div class="wrapper text-center">
+		<br><button type="button" onclick="Loop()" class="btn btn-primary" id="LoopBtn">Loop <span class="badge badge-light">Off</span></button>
+	</div>
+	
+	<div class="wrapper text-center">
 		<br><p id="curvolume" class="font-weight-bold">Volume: 50</p>
 		<div class="container" style="width: 500px;">
 			<input id="vol-control" type="range" class="custom-range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input><br><br>
 		</div>
 	</div>
-
+	
 	<audio id="musico">
 		<source src="Johnson - Det Passer.mp3" type="audio/mpeg">
 	</audio>
 
 	<script type="text/javascript">
-		var AudioBttn = document.getElementById('AudioBtn');
+       		var LoopBttn = document.getElementById('LoopBtn');
+		var loopTog = false;
 		var AudioToggle = true;
 		var audioLvl = Number();
 
@@ -66,15 +71,28 @@
 			Node.currentTime = 0;
 		};
 
-	    function SetVolume(val) {
-	    	audioLvl = val / 100;
-    		var player = document.getElementById("musico");
-	        var voldisplay = document.getElementById('curvolume');
-	        console.log('Before: ' + player.volume);
-	        player.volume = val / 100;
-	        voldisplay.innerText = "Volume: "+val;
-	        console.log('After: ' + player.volume);
-	    };
+		function SetVolume(val) {
+			audioLvl = val / 100;
+			var player = document.getElementById("musico");
+			var voldisplay = document.getElementById('curvolume');
+			console.log('Before: ' + player.volume);
+			player.volume = val / 100;
+			voldisplay.innerText = "Volume: "+val;
+			console.log('After: ' + player.volume);
+		};
+		
+		function Loop() {
+		    if(loopTog == false) {
+			loopTog = true;
+				LoopBttn.innerHTML = "Loop <span class=\"badge badge-light\">On</span>";
+				var player = document.getElementById("musico");
+				player.loop = true;
+			} else {
+				loopTog = false;
+				LoopBttn.innerHTML = "Loop <span class=\"badge badge-light\">Off</span>";
+				player.loop = false;
+			}
+		}
 	</script>
 </body>
 </html>
