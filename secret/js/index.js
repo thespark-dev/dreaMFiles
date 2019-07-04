@@ -41,11 +41,11 @@ function login() {
 		}
 	}
 	console.log("Invalid Username or Password.");
+	alert("Invalid Username or Password.");
 };
 
 function logOut() {
 	var username = getCookie("username");
-	var logoutBtn = document.getElementById("logoutBtn");
 
 	if(username != "") {
 		document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
