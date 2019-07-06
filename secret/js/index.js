@@ -1,7 +1,7 @@
 const users = [
 	{
 		"username": "Texture",
-		"pass": "maggedut2019"
+		"pass": "textureismyacc"
 	},
 	{
 		"username": "Testing",
