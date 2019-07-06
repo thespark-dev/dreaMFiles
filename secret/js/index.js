@@ -4,8 +4,8 @@ const users = [
 		"pass": "maggedut2019"
 	},
 	{
-		"username": "Ankjaer",
-		"pass": "jegermikogduerdig"
+		"username": "Testing",
+		"pass": "loldkboy"
 	}
 ];
 
