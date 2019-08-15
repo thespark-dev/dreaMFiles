@@ -13,27 +13,35 @@
 			background-color: #0F0E11;
 		}
 
-		body {
-		  height: 100vh;
-		  margin: 0;
-		  padding: 0;
-		  position: relative;
-		}
-
-		body::before {
-		  content: '';
-		  position: fixed;
-		  top: 0.1px;
-		  left: 0.1px;
-		  right: 0.1px;
-		  bottom: 0.1px;
-		  border: solid #6441A4 2px;
-		}
+		#top, #bottom, #left, #right {
+			background: #6441A4;
+			position: fixed;
+			}
+			#left, #right {
+				top: 0; bottom: 0;
+				width: 2px;
+				}
+				#left { left: 0; }
+				#right { right: 0; }
+				
+			#top, #bottom {
+				left: 0; right: 0;
+				height: 2px;
+				}
+				#top { top: 0; }
+				#bottom { bottom: 0; }
 	</style>
+	<script type="text/javascript">
+		// xD
+	</script>
 </head>
 <body>
 	<h1 class="display-1 text-center text-white">Movie Streams - Coming Soon!</h1>
 	<h5 class="display-4 text-center text-white" style="font-size: 44px;">(While waiting, join the Discord for regular updates)</h5>
 	<iframe src="https://discordapp.com/widget?id=611587666424758282&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" style="display: block; margin-top: 42px; margin-left: auto; margin-right: auto; border: solid #6441A4 1px; border-radius: 7px;"></iframe>
+	<div id="left"></div>
+	<div id="right"></div>
+	<div id="top"></div>
+	<div id="bottom"></div>
 </body>
 </html>
